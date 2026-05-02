@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "start": "vite preview --host 0.0.0.0 --port 3000"
+  }
+}
+{
   "name": "react-example",
   "private": true,
   "version": "0.0.0",
