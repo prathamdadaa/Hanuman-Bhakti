@@ -1,21 +1,20 @@
-FROM node:20-alpine
-
-WORKDIR /app
-
-# Package files copy kar (fast build ke liye)
-COPY package*.json ./
-
-# Dependencies install kar
-RUN npm ci --only=production
-
-# Baaki files copy kar
-COPY . .
-
-# Build kar production ke liye
-RUN npm run build
-
-# Port batade
-EXPOSE 3000
-
-# Start kar app ko
-CMD ["npm", "run", "preview"]
+{
+  "name": "my-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 3000",
+    "start": "vite preview --host 0.0.0.0 --port 3000"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.1"
+  }
+}
