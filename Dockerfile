@@ -1,17 +1,21 @@
-# Use the official Node.js image as the base image
-FROM node:18
+FROM node:20-alpine
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the application files into the working directory
-COPY . /app
+# Package files copy kar (fast build ke liye)
+COPY package*.json ./
 
-# Install the application dependencies
-RUN npm install
+# Dependencies install kar
+RUN npm ci --only=production
 
-# Expose port 3000
+# Baaki files copy kar
+COPY . .
+
+# Build kar production ke liye
+RUN npm run build
+
+# Port batade
 EXPOSE 3000
 
-# Define the entry point for the container
-CMD ["npm", "start"]
+# Start kar app ko
+CMD ["npm", "run", "preview"]
